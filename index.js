@@ -6,6 +6,15 @@ class weatherData {
         this.temperature = temperature;
         this.description = description;
     }
+    get getCityName() {
+        return this.cityName;
+    }
+    get getTemperature() {
+        return this.temperature;
+    }
+    get getDescription() {
+        return this.description;
+    }
 }
 
 ELEMENTS.SEARCH_BUTTON.addEventListener('click', searchWeather);
@@ -37,12 +46,19 @@ async function getWeather(latitude, longitude) {
     let locationUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + openWeatherAPIKey;
     let response = await fetch(locationUrl);
     let data = await response.json();
-    // let weather = new weatherData()
-    console.log(data.main.temp);
-    console.log(data.weather[0].description.toUpperCase());
-    console.log(data.name);
+
+    let name = data.name.toUpperCase();
+    let temp = data.main.temp + '°C.';
+    let desc = data.weather[0].description.toUpperCase();
+    let weather = new weatherData(name, temp, desc);
+    showWeather(weather);
 }
 
 function showWeather(weatherData) {
+    ELEMENTS.WEATHER_CITY.textContent = weatherData.getCityName;
+    ELEMENTS.WEATHER_DESCRIPTION.textContent = weatherData.getDescription;
+    ELEMENTS.WEATHER_TEMPERATURE.textContent = weatherData.getTemperature;
 
+    // By default it is set to 'none', so we need to display it
+    ELEMENTS.WEATHER_BOX.style.display = 'block';
 }
