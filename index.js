@@ -1,5 +1,13 @@
 import * as ELEMENTS from './elements.js';
 
+class weatherData {
+    constructor(cityName, temperature, description) {
+        this.cityName = cityName;
+        this.temperature = temperature;
+        this.description = description;
+    }
+}
+
 ELEMENTS.SEARCH_BUTTON.addEventListener('click', searchWeather);
 let openWeatherAPIKey = '796825d211ca5a47d673cf83567a52f2';
 
@@ -23,9 +31,18 @@ function searchWeather() {
         .catch(error => console.log(error.message));
 }
 
+
+
 async function getWeather(latitude, longitude) {
     let locationUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + openWeatherAPIKey;
     let response = await fetch(locationUrl);
     let data = await response.json();
+    // let weather = new weatherData()
     console.log(data.main.temp);
+    console.log(data.weather[0].description.toUpperCase());
+    console.log(data.name);
+}
+
+function showWeather(weatherData) {
+
 }

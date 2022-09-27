@@ -10,15 +10,25 @@
     <link rel="stylesheet" href="">
 </head>
 
-<body>
-    <header>
-        <h1>Live Weather Application</h1>
+<body style="padding: 0;margin:0">
+    <header style="height: 100px;background-color:lightblue;text-align:center;padding-top:20px">
+        <h1 style="font-size:40px;font-weight:bold; color:darkblue; margin:0">Live Weather Application</h1>
     </header>
+    <div class="main" style="text-align: center;padding-top:80px">
+        <div id="search">
+            <label for="city">City Name:</label>
+            <input type="text" , id="city">
+            <button type="button" id="searchButton">Search</button>
+        </div>
 
-    <div>
-        <label for="city">City Name:</label>
-        <input type="text" , id="city">
-        <button type="button" id="searchButton">Search</button>
+        <div id="load" style="padding:30px;width:500px;margin:100px auto auto;display:none">Loading...</div>
+
+        <div id="weatherDisplay"
+            style="padding:30px;width:500px;background-color:aqua;color:white;font-weight:bold;display:none">
+            <h1 id="weatherCity" style="font-size: 32px;margin-top: 0;margin-bottom: 30px;">City Name</h1>
+            <div id="weatherDescription" style="float:left">Weather Description</div>
+            <div id="weatherTemperature" style="float: right;">Temperature</div>
+        </div>
     </div>
     <script type="module" src="index.js" async defer></script>
 </body>
